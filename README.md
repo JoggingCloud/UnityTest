@@ -1,6 +1,7 @@
 The code in this repo should generate circular arc scan paths in Unity and send thme to a robot bckend using Socket.IO. In order to do so you would need to create a empty 2D project. Once that's done, then create an empty object in the scene and from there you would add the Net.cs and the ArcVisualization.cs code to the empty object in the scene. From there you would hit the play button and you should see in the console that it's attempting to connect to a local server, it should print the number of created arcs, and if the connection was established.
 To start a socket.io server you need to create a server.js file. That file you use to write the js code needed to run the server via terminal or cmd. In your terminal or cmd, install the depedency: npm install socket.io Then run the server: node server.js . If successful it will say "Server running on http://localhost:3000" From there you leave the terminal or cmd open and hit play in Unity. The cmd or terminal will print "Unity connected" when connected and "Unity disconnected" when you stop play in Unity. 
 The Socket.IO library I used was this: https://github.com/itisnajim/SocketIOUnity
+
 Assumptions:
   1. Flip which side of the chord the arc bulges towards. This does not define which is left or right, clockwise vs counterclockwise. I decided that flip changes the sign of the perpendicular normal used to compute the center.
   2. This is not stated but a minimum of 2 points are required to have a arc which led me to have an inital check before proceeding in the code. 
