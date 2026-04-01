@@ -48,7 +48,7 @@ public static class ArcGenerator
         {
             angularDir -= Mathf.PI * 2f;
         }
-        while(angularDir < Mathf.PI)
+        while(angularDir < -Mathf.PI)
         {
             angularDir += Mathf.PI * 2f;
         }
@@ -82,9 +82,14 @@ public static class ArcGenerator
             throw new System.ArgumentException("Must have at least 2 points");
         }
 
-        Vector2[][] arcs = new Vector2[copyCount + 1][];
+        if (copyCount < 1)
+        {
+            Debug.LogWarning($"Number of copies was { copyCount }, so no arcs will generate");
+        }
 
-        for (int i = 0; i <= copyCount; i++)
+        Vector2[][] arcs = new Vector2[copyCount][];
+
+        for (int i = 0; i < copyCount; i++)
         {
             float offsetRadius = arcRadius + (offsetDistance * i);
 

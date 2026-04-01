@@ -6,6 +6,8 @@ public class Net : MonoBehaviour
 {
     private SocketIO clientSocket;
 
+    [SerializeField] private int numArcs = 2;
+
     // Store arcs
     private Vector2[][] arcs;
 
@@ -33,7 +35,14 @@ public class Net : MonoBehaviour
 
     void CreateTestArcs()
     {
-        arcs = ArcGenerator.GenerateArcWithOffsets(new Vector2(-725f, 600f), new Vector2(725f, 600f), 900f, false, 36, 25f, 2);
+        arcs = ArcGenerator.GenerateArcWithOffsets(new Vector2(-5f, 0f), new Vector2(5f, 0f), 6f, false, 24, 0.75f, numArcs);
+        
+        ArcVisualization visualization = GetComponent<ArcVisualization>();
+        if (visualization != null)
+        { 
+            visualization.arcs = arcs;
+        }
+
         Debug.Log($"Num arcs generated: { arcs.Length }");
     }
 
